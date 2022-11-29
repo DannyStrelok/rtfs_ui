@@ -4,6 +4,7 @@ import postcss from 'rollup-plugin-postcss'
 import { terser } from 'rollup-plugin-terser'
 import { resolve } from 'path'
 import { dependencies } from './package.json'
+import autoprefixer from 'autoprefixer'
 
 const input = resolve(__dirname, './src/index.ts')
 const external = Object.keys(dependencies)
@@ -35,10 +36,14 @@ export default [
       postcss({
         extract: false,
         minimize: false,
+        plugins: [
+          autoprefixer
+        ],
         modules: true,
         sourceMap: true,
         use: {
-          less: { javascriptEnabled: true }
+          less: { javascriptEnabled: true },
+          sass: { javascriptEnabled: true }
         }
       })
     ],
@@ -68,11 +73,15 @@ export default [
       postcss({
         extract: true,
         minimize: true,
+        plugins: [
+          autoprefixer
+        ],
         modules: true,
         sourceMap: false,
         use: {
-          less: { javascriptEnabled: true }
-        }
+          less: { javascriptEnabled: true },
+          sass: { javascriptEnabled: true }
+        },
       })
     ],
     external

@@ -176,6 +176,7 @@ module.exports = {
   // A map from regular expressions to paths to transformers
   transform: {
     '^.+\\.(less)$': 'jest-transform-stub',
+    '^.+\\.(scss)$': 'jest-transform-stub',
     '^.+\\.tsx?$': 'ts-jest'
   }
 
